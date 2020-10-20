@@ -17,12 +17,15 @@
     $products['Toaster']=75;
     
      foreach($products as $key => $value){
-	    echo "<p>The ".$key." costs ".$value."</p>";
+	     $costWithTax = tax_calc($value, $taxRate);
+	     if ($costWithTax <= $credit){
+	    echo "<p>The ".$key." costs ".$costWithTax." with tax</p>";
     }
 	  echo "<h2>Items you can afford</h2>";
 
 foreach($products as $key => $value){
-  if($value <= $credit ){
+	$costWithTax = tax_calc($value, $taxRate);
+  if($costWithTax <= $credit ){
   	echo "<p>".$key."</p>"; 
   }
 }
